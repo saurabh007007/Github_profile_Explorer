@@ -1,3 +1,24 @@
+interface GitHubUser {
+  login: string;
+  name: string;
+  avatar_url: string;
+  bio: string;
+  html_url: string;
+}
+
+interface Repository {
+  name: string;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  language: string;
+}
+
+interface Contribution {
+  owner: number[];
+  all: number[];
+}
+
 export async function getGitHubUser(username: string): Promise<GitHubUser> {
   const response = await fetch(`https://api.github.com/users/${username}`, {
     headers: {
