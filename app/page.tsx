@@ -7,7 +7,7 @@ import { ProfileHeader } from '@/components/ui/profile-header';
 import { RepoList } from '@/components/ui/repo-list';
 import { GitHubUser, Repository } from '@/lib/types';
 import { getGitHubUser, getUserRepositories } from '@/lib/github';
-import { Github } from 'lucide-react';
+import { SiGithub } from 'react-icons/si';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Home() {
@@ -30,8 +30,8 @@ export default function Home() {
         getUserRepositories(username),
       ]);
 
-      setUser(userData);
-      setRepositories(reposData);
+      setUser(userData as GitHubUser);
+      setRepositories(reposData as Repository[]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch user data');
     } finally {
@@ -46,7 +46,7 @@ export default function Home() {
     <main className="min-h-screen bg-background p-8">
       <div className="mx-auto max-w-5xl space-y-8">
         <div className="text-center space-y-4">
-          <Github className="mx-auto h-12 w-12" />
+          <SiGithub className="mx-auto h-12 w-12" />
           <h1 className="text-4xl font-bold">GitHub Profile Explorer</h1>
           <p className="text-muted-foreground">
             Enter a GitHub username to view their profile and repositories
